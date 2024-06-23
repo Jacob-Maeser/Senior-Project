@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset= "UTF-8">
+
+  	<title> Visit Us</title>
+  	<link rel="stylesheet" href="style.css">
+  	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&result_type=country&key=AIzaSyDl4pgj67O51VP9U2MEJCkoA6S_2intl8k"></script>
+</head>
+
+<div class="wrapper">
+
+	<div class= "logo">
+		<img src = "images/logo.jpg" alt = "">
+	</div>
+ 	<h1>
+		Not Your Average Computer Store
+	</h1>
+     	    <br>
+     	    <br>
+     	    <br>
+     	    <br>
+	<div class="topnav">
+		<a href="index.html">Home</a>
+		<a href="webpage1.html">About Us</a>
+		<a href="webpage2.html">Visit Us</a>
+		<a href="webpage3.html">Contact Us</a>
+		<a href="webpage4.html">Mobile Devices & Tablets</a>
+		<a href="webpage5.html">Laptops</a>
+		<a href="webpage6.html">Desktops</a>
+		<a href="webpage7.html">Build Custom Software</a>
+	</div>
+
+		    <br>
+			
+
+	<body>
+
+<!-- *********************** Begin of Cost Message *********************** -->		
+
+<script>
+
+
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+document.write('Your total comes to ' + urlParams.get("price") + ' before shipping.  To estimate the total cost with shipping, continue below.');
+
+
+
+</script>
+
+<!-- *********************** End of Cost Message *********************** -->
+
+<br>
+<br>
+<br>
+<br>
+
+<!-- *********************** Begin of Shipping Cost *********************** -->
+
+<h2>Shipping Cost Calculator</h2>
+<br>
+<script type="text/javascript">
+	if ('geolocation' in navigator) {
+	 		console.log('geolocation available');
+		navigator.geolocation.getCurrentPosition(position => {
+      lat = position.coords.latitude;
+      lon = position.coords.longitude;
+      console.log(lat, lon);
+      document.getElementById('latitude').textContent = lat;
+      document.getElementById('longitude').textContent = lon;
+      console.log(lat);
+	
+
+	var latlng = new google.maps.LatLng(lat, lon);
+    // This is making the Geocode request
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'latLng': latlng },  (results, status) =>{
+        if (status !== google.maps.GeocoderStatus.OK) {
+            alert(status);
+        }
+        // This is checking to see if the Geoeode Status is OK before proceeding
+        if (status == google.maps.GeocoderStatus.OK) {
+            console.log(results);
+            var address = (results[0].formatted_address);
+            console.log(address);
+
+            
+	        if (address.includes("USA") == true){
+	            document.getElementById('shippingcost').textContent = 'Based on your coordinates, you are within the United States.  Congratulations, you qualify for free shipping.  Continue with the purchase form below.';
+	        }
+
+	        else {
+	        	document.getElementById('shippingcost').textContent = 'Based on your coordinates, you are outside the United States.  A $19.99 charge will be added for shipping.  Continue with the purchase form below.';
+	        	}
+        }
+
+    }); 
+		});
+
+	} else {
+		console.log('geolocation not available');
+		}
+		
+</script>
+<!-- *********************** End of Shipping Cost *********************** -->
+
+<!-- *********************** Begin of Shipping Cost Message *********************** -->
+
+	 <p>
+	 	<strong>latitude:</strong> <span id="latitude"></span>&deg;<br />
+	 	<strong>longitude:</strong> <span id="longitude"></span>&deg;
+	 </p>	
+
+	 <br>
+
+	 <p>
+	 	<strong>Shipping:</strong> $0.00
+		<br>
+	 	<span id="shippingcost"></span><br />
+	 </p>
+
+	 <br>
+
+	 
+<script>
+	document.write('Your total with shipping comes to ' + urlParams.get("price") + '. Complete the form to finalize your purchase.');
+</script>
+
+			 
+			 	
+<br>
+<!-- *********************** End of Shipping Cost Message *********************** -->
+
+<!-- *********************** Begin of Purchase Form *********************** -->
+
+<br>
+<br>
+
+<h3>Continue your purchase here!</h3>
+
+	<form method="POST">
+	<div class="tableRow">
+	First Name: <input type="text" name="firstname"> <br>
+	Last Name: <input type="text" name="lastname"> <br>
+	Email: <input type="text" name="email">
+	Phone Number: <input type="text" name="phone">
+	</div>
+
+	<div class="tableRow">
+	<p><strong>Did you have any complaints or concerns?:</strong> <br>
+		<input type="radio" name="yesorno" value = "No"> No <br>
+		<input type="radio" name="yesorno" value = "Yes"> Yes <br>
+		<input type="radio" name="yesorno" value = "Possibly"> Possibly <br>
+	</p>
+	</div>
+
+	<div class="tableRow">
+	<strong>Where do you live?:</strong> <br>
+	<input type="checkbox" name="location" value = "House"> House <br>
+	<input type="checkbox" name="location" value = "Apartment"> Apartment <br>
+	<input type="checkbox" name="location" value = "Condo"> Condo <br>
+	<input type="checkbox" name="location" value = "Duplex"> Duplex <br>
+	<input type="checkbox" name="location" value = "Town House"> Town House <br>
+	Other Destination: <input type="text" name="other"> <br>
+	</div>
+
+	<div class="tableRow">
+	Questions/Concerns: <br>
+	<textarea name="comments" rows="7" cols="50">Type Here</textarea> <br>
+	</div>
+
+<strong>To add an additional item, select your choice here:</strong> <br>
+	
+<div class="tableRow">
+	Laptop: <select name="Laptop">
+	     <option value="inspiron">Inspiron 15 3000 ($349.99)</option>
+	     <option value="edge">Dell XPS 13 9300 ($1,599.99)</option>
+	     <option value="g3">Dell G3 15 3500 ($1,299.99)</option>
+	     <option value="chrome">HP Chromebook 14-Inch ($319.99)</option>
+	     <option value="fhd">HP FHD 10th Gen ($679.99)</option>
+	     <option value="pavilion">HP Pavilion 15-Inch ($899.99)</option>
+	     <option value="air13">Apple 13-Inch MacBook Air ($989.99)</option>
+	     <option value="pro154">Apple 15.4-Inch MacBook Pro ($1,899.99)</option>
+	     <option value="pro13">Apple 13-Inch MacBook Pro ($1,989.99)</option>
+	     <option value="none">None</option>
+	</select> <br>
+	</div>
+
+	<div class="tableRow">
+	Desktop: <select name="desktop">
+	     <option value="flagship">Flagship Dell Inspiron 3880 ($1,110.99)</option>
+	     <option value="inspiron">Dell Inspiron 3471 Disk Drive ($729.99)</option>
+	     <option value="plex">Dell OptiPlex 9020-SFF ($249.99)</option>
+	     <option value="pavilion">HP Pavilion AMD Ryzen 1700 ($859.99)</option>
+	     <option value="envy">HP Envy ($829.99)</option>
+	     <option value="game">HP Envy VR Ready Gaming Desktop ($1,419.99)</option>
+	     <option value="omen">OMEN 25L NVIDIA GeForce ($1,149.99)</option>
+	     <option value="cyber">CYBERPOWERPC Gamer Xtreme VR ($749.99)</option>
+	     <option value="alien">Alienware Aurora R10 ($1,459.99)</option>
+	     <option value="none">None</option>
+	</select> <br>
+	</div>
+
+	<div class="tableRow">
+	<strong>Payment:</strong> <br>
+	Card Type:<input type="text"> <br>
+	Card Number:<input type="text"> <br>
+	Expiration Date (month/date):<input type="text"> <br>
+	Cvs Code:<input type="text"> <br>
+	Billing Address:<input type="text"> <br>
+	Billing Zip Code:<input type="text"> <br>	
+	<input type="submit"> <br>
+	</div>
+	</form>
+<!-- *********************** End of Purchase Form *********************** -->				 	
+
+	</body>
+		
+</div>
+
+</html>
